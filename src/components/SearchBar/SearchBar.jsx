@@ -1,20 +1,29 @@
-import toast from "react-hot-toast";
-import s from "./SearchBar.module.css";
 
-export const SearchBar = ({ onSubmit }) => {
+
+const SearchBar = ({ onSubmit,filterValue }) => {
   const formSubmit = (e) => {
     e.preventDefault();
     const { value } = e.target.elements.search;
-    if (!value) {
-      return toast.error("This didn't work.")
-    }
-    onSubmit(value);
-  };
-
+    // if (!value) {
+    //   return
+    // }
+    // if (value != filterValue) {
+    //    toast.error("This movie doesn't exist")
+    //    return
+    // }
+    onSubmit(value)
+  }
   return (
-    <form className={s.searchForm} onSubmit={formSubmit}>
-      <input type="text" name="search" />
+    <form onSubmit={formSubmit}>
+      <input
+      name="search"
+        type="search"
+        placeholder="Search"
+        defaultValue={filterValue}
+      />
       <button type="submit">Search</button>
     </form>
   );
 };
+
+export default SearchBar;
